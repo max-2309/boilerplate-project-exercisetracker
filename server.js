@@ -95,7 +95,8 @@ app.post('/api/exercise/add', (req, res) => {
     createAndSaveLog(data.username, date, duration, description, (err, data) => {
       if (err) errorHandler(err);
       let d = data.toJSON();
-      d.date = d.date.toUTCString();
+      d.date = d.date.toDateString();
+      d._id = userId;
       delete d['__v'];
       res.json(d);
     });
